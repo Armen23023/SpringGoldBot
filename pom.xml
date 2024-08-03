@@ -11,6 +11,10 @@
     <modules>
         <module>dispatcher</module>
         <module>common-rabbitmq</module>
+        <module>node</module>
+        <module>common-jpa</module>
+        <module>mail-service</module>
+        <module>rest-service</module>
     </modules>
 
     <properties>
