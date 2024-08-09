@@ -46,7 +46,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public String setEmail(AppUser appUser, String email) {
         try {
-            InternetAddress emailAddress = new InternetAddress();
+            InternetAddress emailAddress = new InternetAddress(email);
             emailAddress.validate();
         }catch (AddressException e){
             return "Մուտքագրեք ճիշտ էլ․հասցե  /cancel"  ;
@@ -60,7 +60,7 @@ public class AppUserServiceImpl implements AppUserService {
             var cryptoUserId = hashids.encode(appUser.getId());
             var response = sendRequestToMailService(cryptoUserId,email);
             if (response.getStatusCode() != HttpStatus.OK){
-                var msg =  String.format("Հաղորդագրությունը %s էլ․ հասցեին ուղարկվեց" , email);
+                var msg =  String.format("Հաղորդագրությունը "+ email + " էլ․ հասցեին ուղարկվեց");
                 log.error(msg);
                 appUser.setEmail(null);
                 appUserDAO.save(appUser);

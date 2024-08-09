@@ -1,6 +1,7 @@
 package am.relex.Controller;
 
 import am.relex.configuration.botConfig.BotConfig;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -12,18 +13,16 @@ import javax.annotation.PostConstruct;
 
 
 @Component
+@RequiredArgsConstructor
 @Log4j
 public class TelegramBot extends TelegramLongPollingBot {
 
 
     final BotConfig botConfig;
 
-    private UpdateController updateController;
+    private final UpdateController updateController;
 
-    public TelegramBot(BotConfig botConfig, UpdateController updateController) {
-        this.botConfig = botConfig;
-        this.updateController = updateController;
-    }
+
 
 
     @PostConstruct

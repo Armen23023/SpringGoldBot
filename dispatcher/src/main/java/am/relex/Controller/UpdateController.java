@@ -19,14 +19,13 @@ public class UpdateController {
     private final MessageUtils messageUtils;
 
     private final UpdateProducer updateProducer;
+    public void registerBot(TelegramBot telegramBot){
+        this.telegramBot = telegramBot;
+    }
 
     public UpdateController(MessageUtils messageUtils, UpdateProducer updateProducer){
         this.messageUtils= messageUtils;
         this.updateProducer = updateProducer;
-    }
-
-    public void registerBot(TelegramBot telegramBot){
-        this.telegramBot = telegramBot;
     }
 
 
@@ -35,7 +34,6 @@ public class UpdateController {
             log.error("Received update is null");
             return;
         }
-
 
         if (update.hasMessage()){
             distributeMessageByType(update);
@@ -74,7 +72,6 @@ public class UpdateController {
 
     private void processPhotoMessage(Update update) {
         updateProducer.producer(PHOTO_MESSAGE_UPDATE ,update);
-
     }
 
 
