@@ -1,32 +1,33 @@
 package am.relex.Controller;
 
+import am.relex.configuration.rabbitmqConfig.RabbitConfiguration;
 import am.relex.service.UpdateProducer;
 import am.relex.utils.MessageUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static am.relex.model.RabbitQueue.*;
 
 @Component
 @Log4j
-public class UpdateController {
+@RequiredArgsConstructor
+public class UpdateProcessor {
 
     private TelegramBot telegramBot;
 
     private final MessageUtils messageUtils;
 
     private final UpdateProducer updateProducer;
+
+    private final RabbitConfiguration rabbitConfiguration;
     public void registerBot(TelegramBot telegramBot){
         this.telegramBot = telegramBot;
     }
 
-    public UpdateController(MessageUtils messageUtils, UpdateProducer updateProducer){
-        this.messageUtils= messageUtils;
-        this.updateProducer = updateProducer;
-    }
+
 
 
     public void processUpdate(Update update){

@@ -49,7 +49,8 @@ public class MainServiceImpl implements MainService {
             output = processServiceCommand(appUser, text);
         } else if (WAIT_FOR_EMAIL_STATE.equals(userState)) {
 
-            output = appUserService.setEmail(appUser, text);
+            output = appUserService.
+                    setEmail(appUser, text);
 
 
         } else {

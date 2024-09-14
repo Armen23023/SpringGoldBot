@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Configuration;
 public class BotConfig {
 
     @Value("${bot.name}")
-    String botName;
+    private String botName;
     @Value("${bot.token}")
-    String token;
+    private String token;
+    @Value("${bot.uri}")
+    private String botUri;
 }
